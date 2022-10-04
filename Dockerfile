@@ -67,6 +67,7 @@ RUN conda install mamba -y
 #RUN rm /opt/conda/envs/bioinfo/bin/R /opt/conda/envs/bioinfo/bin/Rscript
 ENV PATH /opt/conda/envs/bioinfo/bin:$PATH
 RUN echo "conda activate bioinfo" >> ~/.bashrc
+RUN mamba install soapec salmon picard trim-galore fastqc trimmomatic bowtie2 soapdenovo2 bcftools bedtools -y
 
 # Installing Tini
 
@@ -76,6 +77,13 @@ RUN apt-get install -y curl grep sed dpkg && \
     dpkg -i tini.deb && \
     rm tini.deb && \
     apt-get clean
+
+# student user
+RUN useradd -m -d /home/student student
+#ADD . /home/student/teachingDocker
+RUN chown -R student.student /home/student
+
+RUN mkdir ~/data
 
 ## automatically link a shared volume for kitematic users
 VOLUME /home/rstudio/kitematic
