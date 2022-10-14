@@ -78,13 +78,6 @@ RUN apt-get install -y curl grep sed dpkg && \
     rm tini.deb && \
     apt-get clean
 
-# student user
-RUN useradd -m -d /home/student student
-#ADD . /home/student/teachingDocker
-RUN chown -R student.student /home/student
-
-RUN mkdir ~/data
-
 ## automatically link a shared volume for kitematic users
 VOLUME /home/rstudio/kitematic
 
@@ -94,5 +87,15 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 CMD [ "/bin/bash" ]
 CMD [ "R" ]
 CMD [ "/init" ]
+
+# student user
+RUN useradd -m -d /home/student student
+#ADD . /home/student/teachingDocker
+RUN chown -R student.student /home/student
+RUN mkdir /home/student/data
+RUN chmod 777 /home/student/data
+
+USER student
+WORKDIR /home/student
 
 EXPOSE 8787
