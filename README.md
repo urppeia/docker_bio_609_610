@@ -26,5 +26,5 @@ cd docker_bio_609_610_634
 ## Enter into the Docker container
 
 ```bash
-./run.sh
+./login_student.sh
 ```
