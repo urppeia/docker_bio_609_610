@@ -28,3 +28,5 @@ cd docker_bio_609_610_634
 ```bash
 ./login_student.sh
 ```
+
+If you were able to enter the container, you are prepared for the course.
