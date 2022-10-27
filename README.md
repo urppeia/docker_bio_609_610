@@ -1,12 +1,10 @@
 # Docker for BIO609/BIO610/BIO634
 Docker image for courses BIO609, BIO610, and BIO634 at University of Zurich
 
-
-## Installation for 
-
-### Install Docker
+## Install Docker
 Please see the detailed instruction from https://docs.docker.com/engine/install/
 
+## Installation for LINUX and UNIX
 
 ### Clone the repository
 
@@ -32,7 +30,7 @@ cd docker_bio_609_610_634
 If you were able to enter the container, you are prepared for the course.
 
 
-## Windows
+## Installation on Windows
 
 1. Install `git`: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 2. After installation is completed, open **Git Bash App**
