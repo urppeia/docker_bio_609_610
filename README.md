@@ -7,7 +7,7 @@ Please see the detailed instruction from https://docs.docker.com/engine/install/
 ## Install `git`
 Please see the detailed instruction from https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-## Installation for LINUX and UNIX
+## Installation on LINUX and UNIX
 
 ### Clone the repository
 
