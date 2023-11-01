@@ -60,6 +60,7 @@ RUN . /root/.bashrc && \
 
 RUN conda install mamba -y    
 RUN mamba env update -n bioinfo --file bioinfo.yml && mamba clean -a -y
+RUN echo "conda activate bioinfo" >> ~/.bashrc
 RUN rm /opt/conda/envs/bioinfo/bin/R /opt/conda/envs/bioinfo/bin/Rscript
 ENV PATH /opt/conda/envs/bioinfo/bin:$PATH
 
