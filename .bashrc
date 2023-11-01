@@ -8,3 +8,6 @@ PS1='\[\e[0;31m\]\u in \h\[\e[m\] \[\e[0;37m\]\w\[\e[m\] \[\e[0;32\] \[\e[m\]\[\
 DISABLE_AUTO_TITLE=true
 
 alias ls='ls --color'
+
+. /opt/conda/etc/profile.d/conda.sh
+conda activate bioinfo

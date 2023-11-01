@@ -1,4 +1,4 @@
-FROM rocker/verse:4.2.1
+FROM rocker/verse:4.3.1
 
 MAINTAINER Deepak Tanwar (dktanwar@hotmail.com)
 
@@ -9,14 +9,10 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 COPY .bashrc /root/.bashrc
 WORKDIR /project
 
-ENV RENV_VERSION 0.15.5
+ENV RENV_VERSION 1.0.3
 RUN R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
 RUN R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 RUN R -e "remotes::install_github('anthonynorth/rscodeio')"
-
-#COPY renv.lock renv.lock
-#RUN R -e "renv::restore()"
-
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
@@ -43,7 +39,7 @@ RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificate
     libglib2.0-0 libxext6 libsm6 libxrender1 \
     git mercurial subversion
 
-RUN wget --quiet -O ~/miniconda3.sh https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh \
+RUN wget --quiet -O ~/miniconda3.sh https://repo.anaconda.com/miniconda/Miniconda3-py311_23.9.0-0-Linux-x86_64.sh \
     && /bin/bash ~/miniconda3.sh -b -p /opt/conda\
     && rm ~/miniconda3.sh && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
@@ -57,17 +53,15 @@ ENV PATH /root/miniconda3/bin:$PATH
 
 SHELL ["/bin/bash", "-c"]
 
-#COPY bioinfo.yml .
+COPY bioinfo.yml .
 RUN . /root/.bashrc && \ 
     conda create -n bioinfo -y && \
     conda activate bioinfo
 
 RUN conda install mamba -y    
-#RUN mamba env update -n bioinfo --file bioinfo.yml && mamba clean -a -y
-#RUN rm /opt/conda/envs/bioinfo/bin/R /opt/conda/envs/bioinfo/bin/Rscript
+RUN mamba env update -n bioinfo --file bioinfo.yml && mamba clean -a -y
+RUN rm /opt/conda/envs/bioinfo/bin/R /opt/conda/envs/bioinfo/bin/Rscript
 ENV PATH /opt/conda/envs/bioinfo/bin:$PATH
-RUN echo "conda activate bioinfo" >> ~/.bashrc
-RUN mamba install soapec salmon picard trim-galore fastqc trimmomatic bowtie2 soapdenovo2 bcftools bedtools -y
 
 # Installing Tini
 
@@ -92,6 +86,7 @@ CMD [ "/init" ]
 RUN useradd -m -d /home/student student
 #ADD . /home/student/teachingDocker
 RUN chown -R student.student /home/student
+COPY .bashrc /home/student/.bashrc
 RUN mkdir /home/student/data
 RUN chmod 777 /home/student/data
 
