@@ -32,6 +32,6 @@ If you were able to enter the container, you are prepared for the course.
 ## Installation on Windows
 
 1. After installation is completed, open **Git Bash App**
-2. Run git clone https://github.com/urppeia/docker_bio_609_610.git
+2. Run `git clone` https://github.com/urppeia/docker_bio_609_610.git
 3. Enter the directory: `cd docker_bio_609_610`
 4. Run: `./win_login_student.sh`
