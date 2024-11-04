@@ -9,6 +9,8 @@ Please see the detailed instruction from https://git-scm.com/book/en/v2/Getting-
 
 ## Installation on LINUX and UNIX
 
+> You would have to run the following commands on a `terminal`
+
 ### Clone the repository
 
 ```bash
